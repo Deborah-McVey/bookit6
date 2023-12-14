@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Book } from 'src/app/shared/book/book.model';
 
 @Component({
   selector: 'app-book-list',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent {
+  @Output() currentSelectedBook = new EventEmitter<Book>();
 
+  myBooks: Book[] = [];
+
+  handleBookSelected(book: Book) {
+    this.currentSelectedBook.emit(book);
+  }
 }
